@@ -1,0 +1,54 @@
+<!-- templates/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Grading Tool</title>
+    <!-- Bootstrap CSS CDN -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/styles.css">
+
+</head>
+
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center">Grading Tool</h1>
+        <!-- Assignment Total Points -->
+        <div class="form-group">
+            <label for="totalPoints">Assignment Total Points:</label>
+            <input type="number" id="totalPoints" class="form-control" value="100" min="0">
+        </div>
+        <!-- Current Grade Display -->
+        <h3>Current Grade: <span id="currentGrade">100</span> / <span id="maxPoints">100</span></h3>
+        <!-- Common Mistakes Checklist -->
+        <hr>
+        <button class="btn btn-primary mb-3" id="addError">Add New Error</button>
+        <div id="errorsList">
+            <!-- Errors will be dynamically populated here -->
+        </div>
+        <!-- Feedback Compilation Area -->
+        <!-- Feedback Compilation Area -->
+        <h4>Feedback:</h4>
+        <div class="input-group mb-3">
+            <textarea id="feedbackArea" class="form-control" rows="5"></textarea>
+            <div class="input-group-append">
+                <button class="btn btn-secondary" id="copyFeedbackBtn">Copy</button>
+            </div>
+        </div>
+
+        <!-- Controls -->
+        <button class="btn btn-danger mt-3" id="resetBtn">Reset</button>
+        <button class="btn btn-warning mt-3" id="clearDataBtn">Clear All Data</button>
+
+    </div>
+    <!-- jQuery and Bootstrap JS CDN -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+    <!-- SortableJS CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.15.0/Sortable.min.js"></script>
+    <script src='js/script.js'></script>
+
+</body>
+
+</html>

@@ -1,0 +1,25 @@
+/* static/css/styles.css */
+body {
+    background-color: #f8f9fa;
+}
+
+#feedbackArea {
+    background-color: #e9ecef;
+}
+
+.error-item {
+    margin-bottom: 10px;
+}
+
+/* Style for drag handle */
+.drag-handle {
+    font-size: 18px;
+    cursor: move;
+}
+
+/* Styles for the edit form */
+.edit-form {
+    background-color: #f1f1f1;
+    padding: 10px;
+    border-radius: 5px;
+}
