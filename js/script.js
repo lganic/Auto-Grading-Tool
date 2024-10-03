@@ -79,7 +79,7 @@ $(document).ready(function() {
                             ${error.description} (-${error.points} points)
                         </label>
                         <button class="btn btn-sm btn-warning ml-auto edit-error-btn" data-id="${error.id}">Edit</button>
-                        <button class="btn btn-sm btn-danger ml-2 delete-error-btn" data-id="${error.id}">Delete</button>
+                        <button class="btn btn-sm btn-danger ml-2 delete-error-btn" data-id="${error.id}"><i class="fa fa-trash-o"></i></button>
                     </div>
                     <!-- Collapsible Edit Form -->
                     <div class="edit-form mt-2" style="display: none;">
