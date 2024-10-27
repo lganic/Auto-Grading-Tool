@@ -48,6 +48,9 @@ $(document).ready(function () {
         renderErrors();
         updateGradeAndFeedback();
         renderStudents();
+
+        // Update student count display
+        updateStudentCount();
     }
 
     // Function to save data to localStorage
@@ -74,6 +77,8 @@ $(document).ready(function () {
         if (selectedStudent) {
             $studentSelect.val(selectedStudent.id);
         }
+
+        updateStudentCount();
     }
 
     // Function to update grade and feedback
@@ -292,6 +297,10 @@ $(document).ready(function () {
         }
     }
 
+    function updateStudentCount() {
+        const count = students.length;
+        $('#studentCount').text(`Number of students: ${count}`);
+    }
 
 
     // Event listener for adding new error
