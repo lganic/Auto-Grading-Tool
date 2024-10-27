@@ -17,13 +17,27 @@
         <h1 class="text-center">Grading Tool</h1>
         <div class="text-center">
             <a href="https://github.com/lganic/Auto-Grading-Tool" target="_blank">
-                <img src="https://img.shields.io/badge/GitHub-Auto--Grading--Tool-blue?style=social&logo=github" alt="GitHub link">
+                <img src="https://img.shields.io/badge/GitHub-Auto--Grading--Tool-blue?style=social&logo=github"
+                    alt="GitHub link">
             </a>
         </div>
         <!-- Assignment Total Points -->
         <div class="form-group">
             <label for="totalPoints">Assignment Total Points:</label>
             <input type="number" id="totalPoints" class="form-control" value="100" min="0">
+        </div>
+        <!-- Student Selection and Addition -->
+        <div class="form-group">
+            <label for="studentSelect">Select Student:</label>
+            <select id="studentSelect" class="form-control">
+                <!-- Student options will be dynamically populated here -->
+            </select>
+            <div class="input-group-append">
+                <button class="btn btn-primary" id="addStudentBtn">Add Student</button>
+                <button class="btn btn-danger" id="removeStudentBtn">Remove Student</button>
+            </div>
+            <!-- Display the number of students -->
+            <small id="studentCount" class="form-text text-muted">Number of students: 0</small>
         </div>
         <!-- Current Grade Display -->
         <h3>Current Grade: <span id="currentGrade">100</span> / <span id="maxPoints">100</span></h3>
@@ -46,6 +60,13 @@
         <!-- Controls -->
         <button class="btn btn-danger mt-3" id="resetBtn">Reset</button>
         <button class="btn btn-warning mt-3" id="clearDataBtn">Clear All Data</button>
+        <button class="btn btn-secondary mt-3" id="clearStudentErrorsBtn">Clear All Student Errors</button>
+
+
+        <!-- Report Generation Buttons -->
+        <button class="btn btn-info mt-3" id="generateErrorsReportBtn">Generate Errors Report</button>
+        <button class="btn btn-success mt-3" id="generateStudentReportsBtn">Generate Student Reports</button>
+
 
     </div>
     <!-- jQuery and Bootstrap JS CDN -->
@@ -53,7 +74,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
     <!-- SortableJS CDN -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.15.0/Sortable.min.js"></script>
-    <script src='js/script.js'></script>
+    <script src='js/super.js'></script>
 
 </body>
 
