@@ -70,14 +70,25 @@ $(document).ready(function () {
     function renderStudents() {
         const $studentSelect = $('#studentSelect');
         $studentSelect.empty();
-        students.forEach(function (student) {
+
+        students.forEach(function(student) {
             const option = $('<option>').val(student.id).text(student.name);
             $studentSelect.append(option);
         });
+
         if (selectedStudent) {
             $studentSelect.val(selectedStudent.id);
+            $studentSelect.prop('disabled', false);
+            $('#removeStudentBtn').prop('disabled', false);
+        } else {
+            $studentSelect.prop('disabled', true);
+            $('#removeStudentBtn').prop('disabled', true);
         }
 
+        // Enable or disable the Clear All Student Errors button based on whether there are students
+        $('#clearStudentErrorsBtn').prop('disabled', students.length === 0);
+
+        // Update the student count display
         updateStudentCount();
     }
 
@@ -182,6 +193,27 @@ $(document).ready(function () {
                 updateGradeAndFeedback();
             }
         });
+    }
+
+    // Event listener for Clear All Student Errors button
+    $('#clearStudentErrorsBtn').click(function() {
+        clearAllStudentErrors();
+    });
+
+    function clearAllStudentErrors() {
+        if (confirm('Are you sure you want to remove all errors assigned to all students? This action cannot be undone.')) {
+            students.forEach(function(student) {
+                student.selectedErrors = [];
+            });
+
+            // Update the UI
+            renderErrors();
+            updateGradeAndFeedback();
+            saveData();
+
+            // Provide feedback to the user
+            alert('All student errors have been cleared.');
+        }
     }
 
     function generateErrorsReport() {
