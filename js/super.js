@@ -103,7 +103,19 @@ $(document).ready(function () {
 
         currentGrade = totalPoints;
         let feedbacks = [];
-        selectedStudent.selectedErrors.forEach(function (errorId) {
+
+        // Get the current order of errors from the DOM
+        let orderedErrorIds = $('.error-item').map(function () {
+            return $(this).attr('data-id');
+        }).get(); // Converts jQuery object to array
+
+        // Sort selected errors based on the order in the DOM
+        let sortedErrors = selectedStudent.selectedErrors.sort((a, b) => {
+            return orderedErrorIds.indexOf(a) - orderedErrorIds.indexOf(b);
+        });
+
+        // Process errors in sorted order
+        sortedErrors.forEach(function (errorId) {
             const error = errors.find(e => e.id === errorId);
             if (error) {
                 currentGrade -= error.points;
@@ -114,6 +126,7 @@ $(document).ready(function () {
                 }
             }
         });
+
         if (currentGrade < 0) currentGrade = 0;
         $('#currentGrade').text(currentGrade.toFixed(2));
         $('#maxPoints').text(totalPoints.toFixed(2));
@@ -253,32 +266,43 @@ $(document).ready(function () {
 
     function generateStudentReports() {
         let reportContent = '';
-
+    
+        // Get the current order of errors from the DOM
+        let orderedErrorIds = $('.error-item').map(function () {
+            return $(this).attr('data-id');
+        }).get(); // Converts jQuery object to array
+    
         students.forEach(function (student) {
             reportContent += `${student.name}\n`;
             reportContent += '------------------------------\n';
-
+    
             let studentGrade = totalPoints;
-            student.selectedErrors.forEach(function (errorId) {
+    
+            // Sort selected errors based on the order in the DOM
+            let sortedErrors = student.selectedErrors.sort((a, b) => {
+                return orderedErrorIds.indexOf(a) - orderedErrorIds.indexOf(b);
+            });
+    
+            sortedErrors.forEach(function (errorId) {
                 const error = errors.find(e => e.id === errorId);
                 if (error) {
                     const description = error.description;
                     const pointsOff = error.points;
                     const feedback = error.feedback;
-
+    
                     studentGrade -= pointsOff;
-
+    
                     reportContent += `${description} : -${pointsOff} points\n`;
                     reportContent += `${feedback}\n<br>\n`;
                 }
             });
-
+    
             reportContent += `Total Grade: ${studentGrade.toFixed(2)} / ${totalPoints}\n\n`;
         });
-
+    
         // Trigger download of the report
         downloadTextFile(reportContent, 'Student_Reports.txt');
-    }
+    }    
 
     function downloadTextFile(content, fileName) {
         const blob = new Blob([content], { type: 'text/plain;charset=utf-8' });
